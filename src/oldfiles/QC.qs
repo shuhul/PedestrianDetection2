@@ -8,7 +8,7 @@
     open Microsoft.Quantum.Math;
     open Microsoft.Quantum.Measurement;
    
-    //Test for Quantum Comparator
+    //Test for Quantum Comparator (Compares two qubit registers and finds which one is bigger)
     @Test("QuantumSimulator")
     operation TestQC () : Unit {
         //If you want to see detailed output set this to true

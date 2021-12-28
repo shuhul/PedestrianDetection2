@@ -11,6 +11,7 @@
     open Microsoft.Quantum.Arithmetic;
     open Microsoft.Quantum.Arrays;
    
+    // Durrs maximum finding algorithm
    
     @Test("QuantumSimulator")
     operation TestDA () : Unit {

@@ -17,8 +17,4 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="src\newfiles\" />
-  </ItemGroup>
-
 </Project>

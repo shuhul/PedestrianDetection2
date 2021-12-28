@@ -13,6 +13,8 @@
 
     newtype Double2d = (rows: Int, cols : Int, vals: Double[]);
     
+    // Preps a quantum register in the desired binary state
+
 
     //Tests if Prep is working (Manually check to see if its working)
     @Test("QuantumSimulator")
@@ -33,7 +35,7 @@
         }
      }
      //Tests Copy
-    @Test("QuantumSimulator")
+    // @Test("QuantumSimulator")
     operation TestCopy () : Unit {
         //For all lengths 1-5 and i's
         for i in 0..30{

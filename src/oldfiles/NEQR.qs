@@ -9,7 +9,7 @@
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Arithmetic;
    
-    //THIS IS REALLLLLLLLLLLLLLLLLLLLLLLLY SLOW FIND A FASTER WAY TO DO THIS PLS
+    // Converts a double into a binary representation using NEQR
 
     @Test("QuantumSimulator")
     operation TestNEQR () : Unit {

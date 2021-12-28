@@ -7,11 +7,9 @@
     open Microsoft.Quantum.Math;
     open Microsoft.Quantum.Measurement;
 	open Microsoft.Quantum.Arithmetic;
-   
 
-    //Problem with AE becuase can only determine probablity of correct state by using
-    //Correct States/Total states
-    // not probalbity of the correct state by acutall probalbity
+    // Used for amplitude estimation of the probalbity of getting a correct states S out of a total spact T
+    // (i.e. finds S/T)
 
 
 
