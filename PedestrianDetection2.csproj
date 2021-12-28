@@ -6,15 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="data\TextFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Quantum.Xunit" Version="0.21.2112180703" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="data\" />
   </ItemGroup>
 
 </Project>
