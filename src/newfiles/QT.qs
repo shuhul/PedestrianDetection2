@@ -68,23 +68,34 @@
 	    }
     }
 
-    //Quantum teleportation algorithm
+    // Quantum Teleportation Operation
+    // Inputs: reg -> input register, data -> qubit to transfer
     operation QT (reg : Qubit[], data : Qubit) : Unit {
+        // Put reg in the 1st bell state
         genBellState(reg, [false, false]);
+        // Apply a controlled not gate to entangle the qubits
         CX(data, reg[0]);
+        // Apply hadamard to data
         H(data);
+        // Measure data and reg[0] (Note this does not measuer reg[1])
         let bits = MultiM([data, reg[0]]);
+        // Recreate the original state by measuring classical bits
         if(bits[0] == One){
             Z(reg[1]);
         }
         if(bits[1] == One){
             X(reg[1]);
         }
+        // The output will be stored in reg[1]
     }
 
+    // Bell State Generation Operation
+    // Inputs: input -> qubit register of length 2, num -> the bell state to encode
     operation genBellState (input : Qubit[] , num : Bool[] ): Unit{
+        // Create the state (|00> + |11>)/sqrt(2)
         H(input[0]);
         CX(input[0], input[1]);
+        // Modify it based on num
         if(num[0]){
             Z(input[0]);
         }
@@ -92,4 +103,5 @@
             X(input[1]);
         }
     } 
+
 }

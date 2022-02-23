@@ -28,7 +28,7 @@
                 use m = Qubit[lengthM];
                 use n = Qubit[lengthN];
                 //Length of acutal data
-                let numM = PowI(2,lengthM); //In real code this is smaller
+                let numM = PowI(2,lengthM); 
                 let numN = PowI(2,lengthN);
                 //Qubit to store result
                 use r = Qubit();

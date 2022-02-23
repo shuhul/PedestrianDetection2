@@ -73,21 +73,27 @@
     //Algorithm is O(log(n)) worst case 
     //flags is used for internal operations must be provided as |0> with length 
     //Length(r)+2
+
+
+    // Quantum Comparator Operation
+    // Inputs: r,p -> registers to compare, output -> qubit to store output, flags -> internal register
     operation QuantumComparator(r: Qubit[], p: Qubit[], output : Qubit, flags : Qubit[]): Unit is Ctl + Adj{
         
-        //Set to |1>
+        // Set first and last qubit in flags to |1>
         X(flags[0]);
         X(flags[Length(r)+1]);
-        //For each qubit in r and p
+
+        // Iterate through qubits in r and p
         for i in 0..Length(r)-1{
-            //Compare bits
+            // Compare r[i] and p[i], and set output to |1> if r[i] is greater
             Controlled FlagAndOut([flags[i]], (r[i],p[i],flags[Length(r)+1],output));
-            CCNOT(flags[Length(r)+1],flags[i], flags[i+1]);
+            // Flip the next flag bit if the flag before it is 1
+            CCNOT(flags[Length(r)+1], flags[i], flags[i+1]);
         }
         
     }
 
-    //Compares bits r and p 
+    // Compare bits r and p
     operation FlagAndOut(r: Qubit, p: Qubit, f : Qubit, o : Qubit): Unit is Ctl + Adj{
         //If r > p then f = |1> and o = |1>
         //If r < p then f = |1> and o = |0>
@@ -101,5 +107,5 @@
         X(p);
     }
 
-    
+ 
 }
