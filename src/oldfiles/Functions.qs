@@ -19,6 +19,11 @@
     //Tests if Prep is working (Manually check to see if its working)
     @Test("QuantumSimulator")
     operation TestPrep () : Unit {
+        //Number of correct tries
+        mutable numCorrect = 0;
+        //Total tries
+        mutable numTotal = 0;
+
         //For all lengths 1-5 and i's
         for length in 1..5{
             for i in 0..PowI(2,length)-1{
@@ -29,10 +34,23 @@
                 PrepBE(reg1,i);
                 PrepLE(reg2,i);
                 //Message Results
-                let reg1M = MeasureAndMessage($"State is {i}, LE ",reg1,true);
-                let reg2M = MeasureAndMessage($"State is {i}, BE ",reg2,true);
+                //Message(ToBinary(i, length));
+                let arr1 = ResultArrayAsBoolArray(MultiM(reg1));
+                let arr2 = ResultArrayAsBoolArray(MultiM(reg2));
+                let o = BoolArrayAsIntBE(arr1);
+                if(o == i){
+                    set numCorrect += 1;
+                }
+                // let reg1M = MeasureAndMessage($"State is {i}, LE ",reg1,true);
+    //                let reg2M = MeasureAndMessage($"State is {i}, BE ",reg2,true);
+                set numTotal += 1;
             }
         }
+
+        //Rate of success as a percentage
+        let rateOfSuccess = 100.0*IntAsDouble(numCorrect)/IntAsDouble(numTotal);
+        Message("Testing subroutine: (2) State Preparer...");
+        Message($"Rate of success: {rateOfSuccess}%");
      }
      //Tests Copy
     // @Test("QuantumSimulator")
@@ -170,6 +188,15 @@
     //        for i in 0..Length(accReg)-1{
     //            Adjoint Ry(2.0*ArcCos(Sqrt(1.0/IntAsDouble(acc))), accReg[i]);
     //        }
+    }
+
+    operation ToBinary(inp : Int, bits: Int): String{
+        let bin = IntAsBoolArray(inp, bits);
+        mutable outp = "";
+        for i in 0..Length(bin)-1{
+            set outp += bin[i]?"1"|"0";
+        }
+        return outp;
     }
 
     

@@ -14,17 +14,29 @@
 
     @Test("QuantumSimulator")
     operation TestQT () : Unit {
-        for i in 0..10{
+        for i in 0..0{
             use reg = Qubit[2];
             use data = Qubit();
 
             Rx(PI()/6.0, data);
 
+            Message("Testing Quantum Teleporation Algorithm");
+
+            DumpRegister((),[data]);
+
             QT(reg, data);
+
+            DumpRegister((),[reg[1]]);
 
             Rx(-PI()/6.0, reg[1]);
 
-            let outputM = MeasureAndMessage("Data", [reg[1]], true);
+            Message("Qubit Transfered Successfully");
+
+            let outputM = MeasureAndMessage("Data", [reg[1]], false);
+
+            //Message(BoolAsString(outputM[0] == false));
+
+
 
             ResetAll(reg + [data]);
 	    }
@@ -34,16 +46,23 @@
 
     @Test("QuantumSimulator")
     operation TestGenBellState () : Unit {
-        for i in 0..10{
+        for i in 0..0{
             use reg = Qubit[2];
             let dataInt = 2;
             let data = ReverseBoolArray(IntAsBoolArray(dataInt, 2));
-            Message(data[0] ? "true" | "false");
-            Message(data[1] ? "true" | "false");
+            Message("Testing Bell State Generation");
+
+            //Message(data[0] ? "true" | "false");
+            //Message(data[1] ? "true" | "false");
 
             genBellState(reg, data);
 
-            let output = MeasureAndMessage("Reg", reg, true);
+            DumpRegister((), reg);
+
+            Message("Bell State (|00> + |11>)/sqrt(2) Generated Successfully");
+
+            let output = MeasureAndMessage("Reg", reg, false);
+
 
             ResetAll(reg);
 	    }

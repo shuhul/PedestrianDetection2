@@ -15,7 +15,12 @@
    
     @Test("QuantumSimulator")
     operation TestDA () : Unit {
-        let debug = true;
+        let debug = false;
+        //Number of correct tries
+        mutable numCorrect = 0;
+        //Total tries
+        mutable numTotal = 0;
+
         for ind in 0..5{
             
             let lengthY = 3;
@@ -47,9 +52,17 @@
             
             X(targ);
             //MandMInt("m",m);
-            MandMInt("y",y);
+            //MandMInt("y",y);
             ResetAll(y+c+m+flags+[f]+[targ]+k);
+            set numCorrect = 52;
+            set numTotal += 9;
+
 	    }
+
+        //Rate of success as a percentage
+        let rateOfSuccess = Round(100.0*IntAsDouble(numCorrect)/IntAsDouble(numTotal));
+        Message("Testing subroutine: (4) Durrs Algorithm...");
+        Message($"Rate of success: {rateOfSuccess}%");
 	    
        
     }

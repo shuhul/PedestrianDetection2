@@ -62,6 +62,7 @@
 	    }
         //Rate of success as a percentage
         let rateOfSuccess = 100.0*IntAsDouble(numCorrect)/IntAsDouble(numTotal);
+        Message("Testing subroutine: (1) Quantum Comparator...");
         Message($"Rate of success: {rateOfSuccess}%");
         if (rateOfSuccess < minRate){
             fail "Rate of success was too low";
